@@ -35,8 +35,9 @@ class NewTask extends React.Component {
     console.log(this.props);
     return (
       <div>
-        <form>
+        <form className={css(styles.form)}>
           <input
+            className={css(styles.input)}
             name="name"
             type="text"
             placeholder="Task Name"
@@ -44,13 +45,14 @@ class NewTask extends React.Component {
             onChange={(e) => this.setState({name: e.target.value})}
           />
             <input
+            className={css(styles.input)}
             name="description"
             type="text"
             placeholder="Task Description"
             value={description}
             onChange={(e) => this.setState({description: e.target.value})}
           />
-          <div onClick={this.onSubmit}>
+          <div className={css(styles.button)} onClick={this.onSubmit}>
             Create Task
           </div>
         </form>
@@ -61,10 +63,21 @@ class NewTask extends React.Component {
 
 const styles = StyleSheet.create({
   form: {
-    border: '2px solid #777777'
+    border: '2px solid #777777',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '450px'
   },
   input: {
-    margin: '0.5rem'
+    marginTop: '1.5rem',
+    padding: '0.5rem'
+  },
+  button: {
+    margin: '1.5rem auto',
+    cursor: 'pointer',
+    padding: '0.5rem 1rem',
+    background: '#444444',
+    color: '#f8f8f8'
   }
 });
 
