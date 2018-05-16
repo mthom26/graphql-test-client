@@ -1,5 +1,8 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
 import { StyleSheet, css } from 'aphrodite';
+
+import { addTaskMutation } from '../queries/queries';
 
 class NewTask extends React.Component {
   constructor(props) {
@@ -15,12 +18,17 @@ class NewTask extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    this.props.addTaskMutation({
+      variables: {
+        name: this.state.name,
+        description: this.state.description
+      }
+    });
   }
 
   render() {
     const { name, description } = this.state;
-
+    console.log(this.props);
     return (
       <div>
         <form>
@@ -56,4 +64,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default NewTask;
+export default graphql(addTaskMutation, { name: 'addTaskMutation' })(NewTask);
