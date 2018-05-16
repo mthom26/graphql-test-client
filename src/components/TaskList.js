@@ -1,6 +1,9 @@
 import React from 'react';
 import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
+import { StyleSheet, css } from 'aphrodite';
+
+import TaskItem from './TaskItem';
 
 const getTasksQuery = gql`
   {
@@ -21,21 +24,26 @@ const TaskList = ({ data }) => {
     );
   } else {
     taskList = data.allTasks.map((task, index) => {
-      return (
-        <div key={index}>
-          <h3>{task.name}</h3>
-          <p>{task.description}</p>
-          <p>{task.dateCreated}</p>
-        </div>
-      );
+      return <TaskItem key={index} data={task}/>
     })
   }
 
   return (
-    <div>
+    <div className={css(styles.tasklist)}>
       {taskList}
     </div>
   );
 };
+
+const styles = StyleSheet.create({
+  tasklist: {
+    background: '#d4d4d4',
+    padding: '2rem',
+    borderRadius: '6px',
+    display: 'flex',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap'
+  }
+});
 
 export default graphql(getTasksQuery)(TaskList);
