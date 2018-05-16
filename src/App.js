@@ -43,7 +43,7 @@ class App extends Component {
             {route === '/newtask' &&
               <div>
                 <h1>New Task</h1>
-                <NewTask />
+                <NewTask changeRoute={this.changeRoute}/>
               </div>
             }
           </Container>

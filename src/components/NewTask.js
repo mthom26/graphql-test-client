@@ -27,6 +27,7 @@ class NewTask extends React.Component {
       }
     });
     this.setState({ ...defaultState });
+    this.props.changeRoute('/');
   }
 
   render() {
