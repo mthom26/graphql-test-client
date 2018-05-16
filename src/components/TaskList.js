@@ -1,19 +1,10 @@
 import React from 'react';
-import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
 import { StyleSheet, css } from 'aphrodite';
 
-import TaskItem from './TaskItem';
+import { getTasksQuery } from '../queries/queries';
 
-const getTasksQuery = gql`
-  {
-    allTasks {
-      name
-      description
-      dateCreated
-    }
-  }
-`;
+import TaskItem from './TaskItem';
 
 const TaskList = ({ data }) => {
   
