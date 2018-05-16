@@ -4,14 +4,16 @@ import { StyleSheet, css } from 'aphrodite';
 
 import { addTaskMutation } from '../queries/queries';
 
+const defaultState = {
+  name: '',
+  description: ''
+};
+
 class NewTask extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      name: '',
-      description: ''
-    };
+    this.state = defaultState;
 
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -24,6 +26,7 @@ class NewTask extends React.Component {
         description: this.state.description
       }
     });
+    this.setState({ ...defaultState });
   }
 
   render() {
